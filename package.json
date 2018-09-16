@@ -1,20 +1,20 @@
 {
   "name": "lambda-template",
-  "version": "1.1.0",
-  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
+  "version": "0.1.0",
+  "description": "Use AWS Lambda to render any template engine",
   "main": "handler.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "",
+  "author": "Tom Noogen",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+    "url": "https://github.com/niiknow/lambda-template.git"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "@babel/core": "^7.0.1",
+    "babel-loader": "^8.0.2",
     "babel-plugin-source-map-support": "^2.0.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
@@ -26,7 +26,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "babel-runtime": "^6.26.0",
+    "@babel/runtime": "^7.0.0",
     "source-map-support": "^0.5.9"
   }
 }
