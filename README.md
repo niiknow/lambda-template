@@ -95,4 +95,7 @@ To add environment variables to your project
 - [ ] And of course, with any cache, define how to clear cache on both micro and macro level.
 - [ ] Demonstrate CMS front-end with openresty.
 
+# Note Quirks
+Async is use for all templating including the default nunjucks template, please see all nunjucks recommendation for async templating, especially: https://mozilla.github.io/nunjucks/templating.html#asynceach
+
 # MIT
