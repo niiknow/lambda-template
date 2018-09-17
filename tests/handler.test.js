@@ -33,7 +33,7 @@ test('test_doT_template', async () => {
 test('test_nunjucks_template', async () => {
   const event = {
     path: {
-      bucket: 'nunjucks'
+      bucket: 'njk'
     },
     body: {
       template: {
@@ -50,10 +50,9 @@ test('test_nunjucks_template', async () => {
     <title>Hello</title>
 </head>
 <body class=\"hi\">
-    <div>My Name is Slim Shady!</div>
+    <div>My name is Slim Shady!</div>
 </body>
-</html>
-`;
+</html>`;
   
   const context = 'context';
   const callback = (error, response) => {
