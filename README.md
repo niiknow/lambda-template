@@ -6,9 +6,9 @@ parameters:
 ```
 template: {
   url: 'https://the.template.url',
-  engine: 'dot',
+  engine: 'nunjuck',
   engine_options: 'engine options',
-  extension: 'dot'
+  extension: 'html'
 },
 state: {
   item: 'json/context object to pass to template or the public url to get the json, example: product or recipe'
@@ -33,7 +33,14 @@ Obviously, since the template is provided, user can add their own head and body 
 * Can be use to generate personalized html for email.
 
 ## Engine
-Default engine is doT.js; otherwise, install additional engines. This library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines
+Default engine is nunjucks; otherwise, just install additional engines and pass engine name and configuration in api call. This library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines  We've also installed doTjs engine to demonstrate how it can be done in the unit test.
+
+### Why nunjucks?
+* Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, ssupport, and is popular.
+* It has a bunch of filters built-in so we don't have to write additional filters.
+* Liquid like syntax so it's easy to convert existing theme templates from popular providers such as Shopify, Adobe Business Catalyst, or Nation Builder.
+* Has {% raw %} and {% endraw %} to support client-side javascript: https://mozilla.github.io/nunjucks/templating.html#raw
+* Provide easy way to customize template loader so we can remote load our templates.
 
 ### Requirements
 
@@ -76,6 +83,8 @@ To add environment variables to your project
 4. Make sure to not commit your `env.yml`.
 
 # Future Enhancement / TODO
+- [x] Demonstrate consolidate.js using doTjs templating
+- [ ] Customize nunjucks templating as default template
 - [ ] Dynamic retrieval of item json
 - [ ] Caching of item - to redis?
 - [ ] Retrieve item with authentication, with header? oauth/jwt token?

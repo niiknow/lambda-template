@@ -2,14 +2,16 @@ import * as handler from '../handler';
 
 require('debug').enabled('*');
 
-test('template', async () => {
+test('test_dot_template', async () => {
   const event = {
   	path: {
   		tenant: 'test'
   	},
   	body: {
       template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/test1.dot'
+        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/test1.dot',
+        engine: 'dot',
+        extension: 'dot'
       },
       state: {
         name: 'john',
