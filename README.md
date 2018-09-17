@@ -1,7 +1,7 @@
 # Lambda Template
 Render dynamic UI in the cloud with AWS Lambda
 
-## Psudo-code
+## Psuedo-code
 parameters:
 ```
 tenant: 'the tenant id',
@@ -19,15 +19,16 @@ context: {
 ```
 
 1. Generate MD5 template url: $url_md5
-2. Download and save template to /tmp/$tenant_id/$url_md5 = $saved_url
-3. Initialize template engine based on engine and options
-4. Render compiled template at $saved_url with context object
-5. process head_appends, content_appends, and content_prepends
+2. Download and save template to /tmp/$tenant_id/$url_md5.tpl = $saved_template
+3. Initialize template engine based on engine and options, set base path of engine to /tmp/$tenant_id
+4. Call renderFile($saved_template, { item: context.item })
+5. process head_appends, content_prepends, and content_appends 
+
+Obviously, since the entire template is provided, user can add their own head and body content.  The purpose of head_appends, content_preprends, and content_appends is for your product to add additional analytic/counter/optimization script/pixel/etc...
 
 ## Usage
 * Commonly use to dynamically generate landing page.
 * Can be use to generate html for email.
-
 
 ### Demo
 
