@@ -76,8 +76,8 @@ To add environment variables to your project
 4. Make sure to not commit your `env.yml`.
 
 # Future Enhancement / TODO
-[ ] Dynamic retrieval of item json
-[ ] Caching of item - to redis?
-[ ] Retrieve item with authentication, with header? oauth/jwt token?
+- [ ] Dynamic retrieval of item json
+- [ ] Caching of item - to redis?
+- [ ] Retrieve item with authentication, with header? oauth/jwt token?
 
 # MIT
