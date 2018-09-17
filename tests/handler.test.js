@@ -1,7 +1,5 @@
 import * as handler from '../handler';
 
-require('debug').enabled('*');
-
 test('test_doT_template', async () => {
   const event = {
   	path: {
@@ -65,32 +63,32 @@ test('test_nunjucks_template', async () => {
 });
 
 
-test('test_catfishing_in_mn', async () => {
+test('test_task_in_mn', async () => {
   const event = {
     path: {
       bucket: 'njk'
     },
     body: {
       template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/catfishing-in-mn.html'
+        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.html'
       },
       state: {
         firstName: 'Slim',
         lastName: 'Shady'
       },
-      state_urls: {
+      stateUrls: {
         mn: 'https://niiknow.github.io/zipcode-us/db/55/55123.json',
-        cat: 'https://jsonplaceholder.typicode.com/todos/1'
+        task: 'https://jsonplaceholder.typicode.com/todos/1'
       }
     }
   };
-  const expected = `<div>State: MN</div><div>1</div>`;
+  const expected = `<div>State: MN </div><div>1</div>`;
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);
     expect(typeof response.body).toBe('string');
-    expect(expected).toEqual(true);
+    expect(response.body).toEqual(expected);
   };
 
   await handler.template(event, context, callback);
-});
+}, 3000);

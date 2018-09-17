@@ -113,9 +113,7 @@ To add environment variables to your project
 # Future Enhancement / TODO
 - [x] Demonstrate consolidate.js using doTjs templating
 - [x] Customize nunjucks templating as default template
-- [ ] Dynamic retrieval of item json
-- [ ] Caching of item - to redis?
-- [ ] Retrieve item with authentication, with header? oauth/jwt token?
+- [x] Dynamic retrieval of item json
 - [ ] Since a schema is known and defined, render template from some page configuration file stored in the cloud/secure s3?
 - [ ] Optimize, optimize, optimize: caching template file to disk, precompiled template, caching to redis, etc...
 - [ ] And of course, with any cache, define how to clear cache on both micro and macro level.
