@@ -118,7 +118,6 @@ To add environment variables to your project
 - [x] Dynamic retrieval of item json
 - [ ] Since a schema is known and defined, render template from some page configuration file stored in the cloud/secure s3?
 - [ ] Optimize, optimize, optimize: caching template file to disk, precompiled template, caching to redis, etc...
-- [ ] And of course, with any cache, define how to clear cache on both micro and macro level.
 - [ ] Demonstrate CMS front-end with openresty.
 
 # NOTE / WARNINGS
