@@ -1,22 +1,22 @@
-import ViewEngine from './lib/ViewEngine'
+import ViewEngine from './lib/ViewEngine';
 
 export const template = async (event, context, callback) => {
   const viewng = new ViewEngine(event.path.bucket);
   let response = {
-    statusCode: 200
+    statusCode: 200,
   };
 
   // two step process, slower
   if (event.method === 'GET') {
-  	if (event.query.url) {
-	    // retrieve remote config
-	    await viewng.getJsonItem('body', event.query.url, event);
-	  } else {
-	    return callback(null, {
-	      statusCode: 422,
-	      body: 'The query string parameter "url" of your config json is required.'
-	    });
-	  }
+    if (event.query.url) {
+      // retrieve remote config
+      await viewng.getJsonItem('body', event.query.url, event);
+    } else {
+      return callback(null, {
+        statusCode: 422,
+        body: 'The query string parameter "url" of your config json is required.',
+      });
+    }
   }
 
   response = {
