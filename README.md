@@ -3,6 +3,8 @@
 
 This package help provide server-side rendering, serverlessly.  Say what? ;)
 
+To support rendering of different templating engines, this library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines Consolidate.js is a library that define a single rendering API (consolidates) for different templating engines.  It is widely use in various server-side frameworks such as Express and Koa.
+
 ## Psuedo-code
 parameters:
 ```
@@ -61,7 +63,7 @@ Obviously, since the template is provided, user can add their own head and body 
 * Create your own jsfiddle, codepen, plunkr, etc...
 
 ## Engine
-Default engine is nunjucks; otherwise, just install additional engines and pass engine name and configuration in api call. This library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines  We've also installed doTjs engine to demonstrate how it can be done in the unit test.
+Default engine is nunjucks; otherwise, just install additional engines and pass engine name and configuration in api call.  We've also installed doTjs engine to demonstrate how it can be done in the unit test.
 
 ### Why nunjucks?
 * Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, support, and is popular.
