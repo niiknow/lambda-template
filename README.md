@@ -1,5 +1,7 @@
 # Serverless Template
-Render dynamic html in the cloud with AWS Lambda
+> Render dynamic html in the cloud with AWS Lambda
+
+This package help provide server-side rendering, serverlessly.  Say what? ;)
 
 ## Psuedo-code
 parameters:
@@ -7,26 +9,49 @@ parameters:
 template: {
   url: 'https://the.template.url',
   engine: 'nunjuck',
-  engine_options: 'engine options',
+  engineOptions: 'engine options',
   extension: 'html'
 },
 state: {
-  item: 'json/context object to pass to template or the public url to get the json, example: product or recipe'
+  firstName: 'John'
+},
+stateConfigs: {
+  recipe: 'url to recipe json',
+  product: {
+    url: 'product url',
+    headers: {
+      'auth': {
+        'user': 'username',
+        'pass': 'password',
+        'sendImmediately': false
+      },
+      // or
+      'auth': {
+        'bearer': 'bearerToken'
+      }
+      // or
+      {'x-token': 'my-token'}
+    },
+    body: {
+      stuff: 'for POST method'
+    }
+  }
 },
 extra: {
-  head_appends: 'append content to the head tag, if </head> is found',
-  content_prepends: 'prepend after the body tag if found; otherwise, prepend to content if no body tag found',
-  content_appends: 'stuff to append to the content body, if found; otherwise, append to the content'
+  headAppends: 'append content to the head tag, if </head> is found',
+  contentPrepends: 'prepend after the body tag if found; otherwise, prepend to content if no body tag found',
+  contentAppends: 'stuff to append to the content body, if found; otherwise, append to the content'
 }
 ```
 
 1. Generate MD5 template url: $url_md5
-2. Download and save template to /tmp/$tenant_id/$url_md5.tpl = $saved_template
-3. Initialize template engine based on engine and options, set base path of engine to /tmp/$tenant_id
-4. Call renderFile($saved_template, state)
-5. process head_appends, content_prepends, and content_appends 
+2. Download and save template to /tmp/$bucket/$url_md5.extension = $saved_template
+3. Initialize template engine based on engine and options, set base path of engine to /tmp/$bucket
+4. Loop through stateConfigs and async retrieve all object, merge with state
+5. Call renderFile($saved_template, state)
+6. process headAppends, contentPrepends, and contentAppends 
 
-Obviously, since the template is provided, user can add their own head and body content.  The purpose of head_appends, content_prepends, and content_appends is for additional analytic script/pixel...
+Obviously, since the template is provided, user can add their own head and body content.  The purpose of headAppends, contentPrepends, and contentAppends is for additional analytic script/pixel...
 
 ## Usage
 * Commonly use to dynamically generate landing page.
@@ -96,7 +121,7 @@ To add environment variables to your project
 - [ ] And of course, with any cache, define how to clear cache on both micro and macro level.
 - [ ] Demonstrate CMS front-end with openresty.
 
-# Note Quirks
+# Note
 Async is use for all templating including the default nunjucks template, please see all nunjucks recommendation for async templating, especially: https://mozilla.github.io/nunjucks/templating.html#asynceach
 
 # MIT
