@@ -14,15 +14,21 @@ test('test_doT_template', async () => {
       state: {
         name: 'john',
         age: 100
+      },
+      extra: {
+        headAppends: '<meta name="hi" content="hi" />',
+        contentPrepends: 'Hola',
+        contentAppends: 'Como Esta?'
       }
   	}
   };
-  
+
+  const expected = '<html><head><title>hi</title><meta name="hi" content="hi" /></head><body class="hi">Hola<div>Hi john!</div><div>100</div>Como Esta?</body></html>';
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);
     expect(typeof response.body).toBe('string');
-    expect(response.body).toEqual('<html><head><title>hi</title></head><body class=\"hi\"><div>Hi john!</div><div>100</div></body></html>');
+    expect(response.body).toEqual(expected);
   };
 
   await handler.template(event, context, callback);
@@ -31,11 +37,16 @@ test('test_doT_template', async () => {
 test('test_nunjucks_template', async () => {
   const event = {
     path: {
-      bucket: 'njk'
+      bucket: 'njk1'
     },
     body: {
       template: {
         url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/nunjucks.html'
+      },
+      extra: {
+        headAppends: '<meta name="hi" content="hi" />',
+        contentPrepends: 'Hola',
+        contentAppends: 'Como Esta?'
       },
       state: {
         firstName: 'Slim',
@@ -47,9 +58,7 @@ test('test_nunjucks_template', async () => {
 <head>
     <title>Hello</title>
 </head>
-<body class=\"hi\">
-    <div>My name is Slim Shady!</div>
-</body>
+<body>Hola<div>My name is Slim Shady!</div>Como Esta?</body>
 </html>`;
   
   const context = 'context';
@@ -66,7 +75,7 @@ test('test_nunjucks_template', async () => {
 test('test_task_in_mn', async () => {
   const event = {
     path: {
-      bucket: 'njk'
+      bucket: 'njk2'
     },
     body: {
       template: {
