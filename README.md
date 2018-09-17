@@ -120,6 +120,8 @@ To add environment variables to your project
 - [ ] Demonstrate CMS front-end with openresty.
 
 # Note
-Async is use for all templating including the default nunjucks template, please see all nunjucks recommendation for async templating, especially: https://mozilla.github.io/nunjucks/templating.html#asynceach
+* Async is use for all templating including the default nunjucks template, please see all nunjucks recommendation for async templating, especially: https://mozilla.github.io/nunjucks/templating.html#asynceach
+* Default file cache for everything is 10 minutes.  This can be overridden with CACHE_MIN environment variable.  CACHE_MIN=0 to basically disable cache but still rely on remove server response to If-Modified-Since.  Note: even a small amount of cache like 2 minutes is better than no cache.  This prevent you from getting DDOS response or max out API request per seconds limit.
+* It is also recommended to pass in all your state data and use stateUrls feature only when necessary.  Example, get one object for SEO rendering purpose such as article, blog, product, recipe, etc...
 
 # MIT
