@@ -2,10 +2,10 @@ import * as handler from '../handler';
 
 require('debug').enabled('*');
 
-test('test_dot_template', async () => {
+test('test_doT_template', async () => {
   const event = {
   	path: {
-  		bucket: 'test'
+  		bucket: 'doT'
   	},
   	body: {
       template: {
@@ -33,7 +33,7 @@ test('test_dot_template', async () => {
 test('test_nunjucks_template', async () => {
   const event = {
     path: {
-      bucket: 'test'
+      bucket: 'nunjucks'
     },
     body: {
       template: {
@@ -45,12 +45,21 @@ test('test_nunjucks_template', async () => {
       }
     }
   };
+  const expected = `<html>
+<head>
+    <title>Hello</title>
+</head>
+<body class=\"hi\">
+    <div>My Name is Slim Shady!</div>
+</body>
+</html>
+`;
   
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);
     expect(typeof response.body).toBe('string');
-    expect(response.body).toEqual('<html><head><title>Hello</title></head><body class=\"hi\"><div>My name is Slim Shady!</div></body></html>');
+    expect(response.body).toEqual(expected);
   };
 
   await handler.template(event, context, callback);
