@@ -5,7 +5,7 @@ require('debug').enabled('*');
 test('test_dot_template', async () => {
   const event = {
   	path: {
-  		tenant: 'test'
+  		bucket: 'test'
   	},
   	body: {
       template: {

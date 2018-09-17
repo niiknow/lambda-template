@@ -1,10 +1,10 @@
-import RemoteViews from './lib/RemoteViews'
+import ViewEngine from './lib/ViewEngine'
 
 export const template = async (event, context, callback) => {
-  const view = new RemoteViews(event.path.tenant, event.body);
+  const viewng = new ViewEngine(event.path.bucket, event.body);
   const response = {
     statusCode: 200,
-    body: await view.render(),
+    body: await viewng.render(),
   };
 
   callback(null, response);
