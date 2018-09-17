@@ -33,13 +33,14 @@ Obviously, since the template is provided, user can add their own head and body 
 * Can be use to generate personalized html for email.
 * Use with some kind of headless CMS like: cloudcms.com, contentful.com, dotcms.com, prismic.io, etc... https://www.cmswire.com/web-cms/13-headless-cmss-to-put-on-your-radar/
 * Build your own headless CMS.  Simply create a UI that output configuration for this.  Use openresty make aws lambda call, cache, and return html to the client.
+* Create your own jsfiddle, codepen, plunkr, etc...
 
 ## Engine
 Default engine is nunjucks; otherwise, just install additional engines and pass engine name and configuration in api call. This library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines  We've also installed doTjs engine to demonstrate how it can be done in the unit test.
 
 ### Why nunjucks?
 * Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, support, and is popular.
-* It has a bunch of filters built-in so we don't have to write additional filters.
+* It has a bunch of filters built-in so we don't have to write additional filters: https://mozilla.github.io/nunjucks/templating.html#builtin-filters
 * Liquid like syntax so it's easy to convert existing theme templates from popular providers such as Shopify, Adobe Business Catalyst, or Nation Builder.
 * Has {% raw %} and {% endraw %} to support client-side javascript: https://mozilla.github.io/nunjucks/templating.html#raw
 * Provide easy way to customize template loader so we can remote load our templates.
@@ -86,7 +87,7 @@ To add environment variables to your project
 
 # Future Enhancement / TODO
 - [x] Demonstrate consolidate.js using doTjs templating
-- [ ] Customize nunjucks templating as default template
+- [x] Customize nunjucks templating as default template
 - [ ] Dynamic retrieval of item json
 - [ ] Caching of item - to redis?
 - [ ] Retrieve item with authentication, with header? oauth/jwt token?
