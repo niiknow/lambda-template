@@ -1,4 +1,4 @@
-# Lambda Template
+# Serverless Template
 Render dynamic UI in the cloud with AWS Lambda
 
 ## Psuedo-code
@@ -7,8 +7,9 @@ parameters:
 tenant: 'the tenant id',
 template: {
   url: 'https://the.template.url',
-  engine: 'pug',
-  engine_options: 'engine options'
+  engine: 'dot',
+  engine_options: 'engine options',
+  extension: 'dot'
 },
 state: {
   item: 'json/context object to pass to template or the public url to get the json, example: product or recipe'

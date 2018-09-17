@@ -31,7 +31,7 @@ functions:
     events:
       - http:
           path: render/{tenant}
-          method: get
+          method: post
           cors: true
           request:
             parameters:
