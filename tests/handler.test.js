@@ -42,25 +42,20 @@ test('test_nunjucks_template', async () => {
     body: {
       template: {
         url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/nunjucks.html',
+        minify: true
       },
       extra: {
         headAppends: '<meta name="hi" content="hi" />',
-        contentPrepends: 'Hola',
+        contentPrepends: '{{ Hola }}',
         contentAppends: 'Como Esta?',
       },
       state: {
         firstName: 'Slim',
         lastName: 'Shady',
-      },
+      }
     },
   };
-  const expected = `<html>
-<head>
-    <title>Hello</title>
-<meta name="hi" content="hi" /></head>
-<body>Hola<div>My name is Slim Shady!</div>Como Esta?</body>
-</html>`;
-
+  const expected = `<html><head><title>Hello</title><meta name="hi" content="hi"></head><body>{{ Hola }}<div>My name is Slim Shady!</div>Como Esta?</body></html>`;
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);
@@ -79,7 +74,7 @@ test('test_task_in_mn', async () => {
     },
     body: {
       template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.html',
+        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.html'
       },
       extra: {
         headAppends: '<meta name="hi" content="hi" />',
@@ -93,7 +88,7 @@ test('test_task_in_mn', async () => {
       stateUrls: {
         mn: 'https://niiknow.github.io/zipcode-us/db/55/55123.json',
         task: 'https://jsonplaceholder.typicode.com/todos/1',
-      },
+      }
     },
   };
   const expected = 'Hola<div>State: MN </div><div>1</div>Como Esta?';

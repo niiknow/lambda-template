@@ -12,7 +12,9 @@ template: {
   url: 'https://the.template.url',
   engine: 'nunjuck',
   engineOptions: 'engine options',
-  extension: 'html'
+  extension: 'html',
+  pretty: 'true to enable beautifier',
+  minify: 'true to minify html and css'
 },
 state: {
   firstName: 'John'
