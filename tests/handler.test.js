@@ -63,3 +63,34 @@ test('test_nunjucks_template', async () => {
 
   await handler.template(event, context, callback);
 });
+
+
+test('test_catfishing_in_mn', async () => {
+  const event = {
+    path: {
+      bucket: 'njk'
+    },
+    body: {
+      template: {
+        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/catfishing-in-mn.html'
+      },
+      state: {
+        firstName: 'Slim',
+        lastName: 'Shady'
+      },
+      state_urls: {
+        mn: 'https://niiknow.github.io/zipcode-us/db/55/55123.json',
+        cat: 'https://jsonplaceholder.typicode.com/todos/1'
+      }
+    }
+  };
+  const expected = `<div>State: MN</div><div>1</div>`;
+  const context = 'context';
+  const callback = (error, response) => {
+    expect(response.statusCode).toEqual(200);
+    expect(typeof response.body).toBe('string');
+    expect(expected).toEqual(true);
+  };
+
+  await handler.template(event, context, callback);
+});
