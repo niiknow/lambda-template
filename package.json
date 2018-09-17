@@ -1,7 +1,7 @@
 {
-  "name": "lambda-template",
+  "name": "serverless-template",
   "version": "0.1.0",
-  "description": "Use AWS Lambda to render any template engine",
+  "description": "Use AWS Lambda node to render any javascript template engine",
   "main": "handler.js",
   "scripts": {
     "test": "jest"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/niiknow/lambda-template.git"
+    "url": "https://github.com/niiknow/serverless-template.git"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
