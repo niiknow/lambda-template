@@ -26,9 +26,14 @@ provider:
   #environment: ${file(env.yml):${self:provider.stage}}
 
 functions:
-  hello:
-    handler: handler.hello
+  render:
+    handler: handler.render
     events:
       - http:
-          path: hello
+          path: render/{tenant}
           method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                tenant: true
