@@ -1,24 +1,33 @@
-# Serverless Node.js Starter
+# Lambda Template
+Render dynamic UI in the cloud with AWS Lambda
 
-A Serverless starter that adds ES7 syntax, serverless-offline, environment variables, and unit test support. Part of the [Serverless Stack](http://serverless-stack.com) guide.
+## Psudo-code
+parameters:
+```
+tenant: 'the tenant id',
+template: {
+  url: 'https://the.template.url',
+  engine: 'pug',
+  engine_options: 'engine options'
+},
+context: {
+  head_appends: 'append content to the head tag, if </head> is found',
+  content_prepends: 'prepend after the body tag if found; otherwise, append to content if no body tag found',
+  content_appends: 'stuff to append to the content body, if found; otherwise, append to the content',
+  item: 'json/context object to pass to template'
+}
+```
 
-[Serverless Node.js Starter](https://github.com/AnomalyInnovations/serverless-nodejs-starter) uses the [serverless-webpack](https://github.com/serverless-heaven/serverless-webpack) plugin, [Babel](https://babeljs.io), [serverless-offline](https://github.com/dherault/serverless-offline), and [Jest](https://facebook.github.io/jest/). It supports:
+1. Generate MD5 template url: $url_md5
+2. Download and save template to /tmp/$tenant_id/$url_md5 = $saved_url
+3. Initialize template engine based on engine and options
+4. Render compiled template at $saved_url with context object
+5. process head_appends, content_appends, and content_prepends
 
-- **ES7 syntax in your handler functions**
-  - Use `import` and `export`
-- **Package your functions using Webpack**
-- **Run API Gateway locally**
-  - Use `serverless offline start`
-- **Support for unit tests**
-  - Run `npm test` to run your tests
-- **Sourcemaps for proper error messages**
-  - Error message show the correct line numbers
-  - Works in production with CloudWatch
-- **Automatic support for multiple handler files**
-  - No need to add a new entry to your `webpack.config.js`
-- **Add environment variables for your stages**
+## Usage
+* Commonly use to dynamically generate landing page.
+* Can be use to generate html for email.
 
----
 
 ### Demo
 
@@ -120,12 +129,4 @@ To add environment variables to your project
 3. Uncomment `environment: ${file(env.yml):${self:provider.stage}}` in the `serverless.yml`.
 4. Make sure to not commit your `env.yml`.
 
-### Support
-
-- Send us an [email](mailto:contact@anoma.ly) if you have any questions
-- Open a [new issue](https://github.com/AnomalyInnovations/serverless-nodejs-starter/issues/new) if you've found a bug or have some suggestions.
-- Or submit a pull request!
-
-### Maintainers
-
-Serverless Node.js Starter is maintained by Frank Wang ([@fanjiewang](https://twitter.com/fanjiewang)) & Jay V ([@jayair](https://twitter.com/jayair)). [**Subscribe to our newsletter**](http://eepurl.com/cEaBlf) for updates. Send us an [email](mailto:contact@anoma.ly) if you have any questions.
+# MIT
