@@ -12,10 +12,10 @@ export const template = async (event, context, callback) => {
 	    // retrieve remote config
 	    await viewng.getJsonItem('body', event.query.url, event);
 	  } else {
-	    let response = {
+	    return callback(null, {
 	      statusCode: 422,
 	      body: 'The query string parameter "url" of your config json is required.'
-	    };
+	    });
 	  }
   }
 
