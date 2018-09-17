@@ -36,7 +36,7 @@ Obviously, since the template is provided, user can add their own head and body 
 Default engine is nunjucks; otherwise, just install additional engines and pass engine name and configuration in api call. This library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines  We've also installed doTjs engine to demonstrate how it can be done in the unit test.
 
 ### Why nunjucks?
-* Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, ssupport, and is popular.
+* Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, support, and is popular.
 * It has a bunch of filters built-in so we don't have to write additional filters.
 * Liquid like syntax so it's easy to convert existing theme templates from popular providers such as Shopify, Adobe Business Catalyst, or Nation Builder.
 * Has {% raw %} and {% endraw %} to support client-side javascript: https://mozilla.github.io/nunjucks/templating.html#raw
