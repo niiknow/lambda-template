@@ -88,5 +88,7 @@ To add environment variables to your project
 - [ ] Dynamic retrieval of item json
 - [ ] Caching of item - to redis?
 - [ ] Retrieve item with authentication, with header? oauth/jwt token?
+- [ ] Since a schema is known and defined, render template from some page configuration file stored in the cloud/secure s3?
+- [ ] Optimize, optimize, optimize: caching template file to disk, precompiled template, caching to redis, etc...
 
 # MIT
