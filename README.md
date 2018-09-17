@@ -10,7 +10,7 @@ template: {
   engine: 'pug',
   engine_options: 'engine options'
 },
-context: {
+state: {
   item: 'json/context object to pass to template or the public url to get the json, example: product or recipe'
 },
 extra: {
@@ -23,7 +23,7 @@ extra: {
 1. Generate MD5 template url: $url_md5
 2. Download and save template to /tmp/$tenant_id/$url_md5.tpl = $saved_template
 3. Initialize template engine based on engine and options, set base path of engine to /tmp/$tenant_id
-4. Call renderFile($saved_template, context)
+4. Call renderFile($saved_template, state)
 5. process head_appends, content_prepends, and content_appends 
 
 Obviously, since the entire template is provided, user can add their own head and body content.  The purpose of head_appends, content_preprends, and content_appends is for your product to add additional analytic/counter/optimization script/pixel/etc...
@@ -31,6 +31,9 @@ Obviously, since the entire template is provided, user can add their own head an
 ## Usage
 * Commonly use to dynamically generate landing page.
 * Can be use to generate html for email.
+
+## Engine
+Default engine is doT.js; otherwise, install additional engines. This library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines
 
 ### Demo
 
