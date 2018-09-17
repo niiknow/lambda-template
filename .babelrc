@@ -3,6 +3,25 @@
   "presets": [
     ["env", { "node": "8.10" }],
     "stage-3"
-  ]
+  ],
+  "env": {
+    "production": {
+      "retainLines": false,
+      "minified": true
+    },
+    "development": {
+      "retainLines": true,
+      "plugins": [
+        "transform-runtime"
+      ]
+    },
+    "test": {
+      "retainLines": true,
+      "plugins": [
+        "transform-runtime",
+        "istanbul"
+      ]
+    }
+  }
 }
 
