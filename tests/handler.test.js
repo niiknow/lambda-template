@@ -57,7 +57,7 @@ test('test_nunjucks_template', async () => {
   const expected = `<html>
 <head>
     <title>Hello</title>
-</head>
+<meta name="hi" content="hi" /></head>
 <body>Hola<div>My name is Slim Shady!</div>Como Esta?</body>
 </html>`;
   
@@ -81,6 +81,11 @@ test('test_task_in_mn', async () => {
       template: {
         url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.html'
       },
+      extra: {
+        headAppends: '<meta name="hi" content="hi" />',
+        contentPrepends: 'Hola',
+        contentAppends: 'Como Esta?'
+      },
       state: {
         firstName: 'Slim',
         lastName: 'Shady'
@@ -91,7 +96,7 @@ test('test_task_in_mn', async () => {
       }
     }
   };
-  const expected = `<div>State: MN </div><div>1</div>`;
+  const expected = `Hola<div>State: MN </div><div>1</div>Como Esta?`;
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);

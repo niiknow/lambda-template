@@ -4,7 +4,7 @@
   "description": "Use AWS Lambda node to render any javascript template engine",
   "main": "handler.js",
   "scripts": {
-    "test": "DEBUG=view-engine,my-nunjucks-loader jest"
+    "test": "DEBUG=view-engine,my-nunjucks-loader jest --coverage"
   },
   "author": "Tom Noogen",
   "license": "MIT",
