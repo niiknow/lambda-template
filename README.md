@@ -121,9 +121,11 @@ To add environment variables to your project
 - [ ] And of course, with any cache, define how to clear cache on both micro and macro level.
 - [ ] Demonstrate CMS front-end with openresty.
 
-# Note
+# NOTE / WARNINGS
 * Async is use for all templating including the default nunjucks template, please see all nunjucks recommendation for async templating, especially: https://mozilla.github.io/nunjucks/templating.html#asynceach
 * Default file cache for everything is 10 minutes.  This can be overridden with CACHE_MIN environment variable.  CACHE_MIN=0 to basically disable cache but still rely on remove server response to If-Modified-Since.  Note: even a small amount of cache like 2 minutes is better than no cache.  This prevent you from getting DDOS response or max out API request per seconds limit.
 * It is also recommended to pass in all your state data and use stateUrls feature only when necessary.  Example, get one object for SEO rendering purpose such as article, blog, product, recipe, etc...
+* Caching is done by storing the MD5 hash of the file URL with its content on AWS /tmp folder.  It is difficult to clear all cache because the file/cache can exists in multiple instances of the function executing machines.  See next statement.
+* Cache Hacking - you can use a popular method for cache busting that is use on the browser side.  Since we generate the cache based on URL, you can bypass cache by having a cache-busting querystring in your URL, example: https://template.url.com/index.html?cb=YYYYMMDD for daily cache busting or even hourly.  WARNING: Do this for anything less than hourly.  It may result in running out of /tmp space or even worse, slow performance.
 
 # MIT
