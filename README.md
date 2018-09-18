@@ -9,12 +9,11 @@ To support rendering of different templating engines, this library use consolida
 parameters:
 ```
 template: {
-  url: 'https://the.template.url',
-  engine: 'nunjuck',
-  engineOptions: 'engine options',
-  extension: 'html',
+  url: 'https://the.template.url/template.dot',
   pretty: 'true to enable beautifier',
-  minify: 'true to minify html and css'
+  minify: 'true to minify html and css',
+  engine: 'dot',
+  engineOptions: 'engine specific options'
 },
 state: {
   firstName: 'John'
@@ -39,6 +38,18 @@ stateConfigs: {
     body: {
       stuff: 'for POST method'
     }
+  },
+  seo: {
+    title: 'page title',
+    url: 'page and cannonical url',
+    image: 'image url',
+    robots: 'index, follow',
+    description: 'short description or page excerpt',
+    twitterHandle: 'twitter card handle',
+    twitterType: 'summary',
+    author: 'site name or author',
+    type: 'website',
+    locale: 'en_US'
   }
 },
 extra: {
