@@ -163,7 +163,6 @@ test('test_doT_with_nunjucks_seo', async () => {
   await handler.template(event, context, callback);
 });
 
-
 test('test_script_text_seo', async () => {
   const event = {
     path: {
@@ -175,47 +174,13 @@ test('test_script_text_seo', async () => {
         minify: true
       },
       state: {
-        name: 'john',
-        age: 100,
-      },
-      seo: {
-        title: 'Rainbow Root Soup - Guiding Stars',
-        url: 'https://guidingstars.com/recipes/rainbow-root-soup/',
-        image: 'https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png',
-        robots: 'index, follow',
-        description: 'If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy.',
-        twitterHandle: '@guidingstars',
-        twitterType: 'summary_large_image',
-        author: 'Recipes',
-        type: 'article',
-        locale: 'en_US'
+        firstName: 'Slim',
+        lastName: 'Shady',
       }
     },
   };
 
-  const expected = `<html><head><title>Rainbow Root Soup - Guiding Stars</title>
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://guidingstars.com/recipes/rainbow-root-soup/" />
-<link rel="author" href="Recipes" />
-<link rel="description" href="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy." />
-<meta property="og:type" content="article" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:site_name" content="Rainbow Root Soup - Guiding Stars" />
-<meta property="og:url" content="https://guidingstars.com/recipes/rainbow-root-soup/" />
-<meta property="og:title" content="Rainbow Root Soup - Guiding Stars" />
-<meta property="og:image" content="https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png" />
-<meta property="og:description" content="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy." />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@guidingstars" />
-<meta name="twitter:creator" content="@guidingstars" />
-<meta name="twitter:title" content="Rainbow Root Soup - Guiding Stars" />
-<meta name="twitter:image:src" content="https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png" />
-<meta name="twitter:description" content="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy." />
-<meta itemprop="name" content="Rainbow Root Soup - Guiding Stars" />
-<meta itemprop="url" content="https://guidingstars.com/recipes/rainbow-root-soup/" />
-<meta itemprop="author" content="Recipes" />
-<meta itemprop="image" content="https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png" />
-<meta itemprop="description" content="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy." /></head><body class="hi"><div>Hi john!</div><div>100</div></body></html>`;
+  const expected = '<html><head><title>Rainbow Root Soup - Guiding Stars</title><meta name="robots" content="index, follow"><link rel="canonical" href="https://guidingstars.com/recipes/rainbow-root-soup/"><link rel="author" href="Recipes"><link rel="description" href="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy."><meta property="og:type" content="article"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="Rainbow Root Soup - Guiding Stars"><meta property="og:url" content="https://guidingstars.com/recipes/rainbow-root-soup/"><meta property="og:title" content="Rainbow Root Soup - Guiding Stars"><meta property="og:image" content="https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png"><meta property="og:description" content="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@guidingstars"><meta name="twitter:creator" content="@guidingstars"><meta name="twitter:title" content="Rainbow Root Soup - Guiding Stars"><meta name="twitter:image:src" content="https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png"><meta name="twitter:description" content="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy."><meta itemprop="name" content="Rainbow Root Soup - Guiding Stars"><meta itemprop="url" content="https://guidingstars.com/recipes/rainbow-root-soup/"><meta itemprop="author" content="Recipes"><meta itemprop="image" content="https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png"><meta itemprop="description" content="If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy."></head><body><div>My name is Slim Shady!</div></body></html>';
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);
