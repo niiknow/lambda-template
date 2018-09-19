@@ -55,7 +55,19 @@ stateConfigs: {
 extra: {
   headAppends: 'append content to the head tag, if </head> is found',
   contentPrepends: 'prepend after the body tag if found; otherwise, prepend to content if no body tag found',
-  contentAppends: 'stuff to append to the content body, if found; otherwise, append to the content'
+  contentAppends: 'stuff to append to the content body, if found; otherwise, append to the content',
+  contents: {
+    block1: { 
+      startAt: yyyymmdd, 
+      endAt: yyyymmdd,
+      timezone: 'cst',
+      locale: 'en', 
+      stores: ['guidx', 'guidy'],
+      geos: [{lat: xx.xx, lng: yy.yy, radius: 50 }], // fencing radius in meters
+      label: 'store x, y, z',
+      content: ''
+    }
+  }
 }
 ```
 
@@ -65,6 +77,7 @@ extra: {
 4. Loop through stateConfigs and async retrieve all object, merge with state
 5. Call renderFile($saved_template, state)
 6. process headAppends, contentPrepends, and contentAppends 
+7. extra.contents are pass in to be render as json on the client side as window.__templateExtra.contents - this is display to the client with provided javascript base on browser info.  We cannot render targeted content blocks server-side without cache and performance issues.
 
 Obviously, since the template is provided, user can add their own head and body content.  The purpose of headAppends, contentPrepends, and contentAppends is for additional analytic script/pixel...
 
@@ -126,6 +139,7 @@ To add environment variables to your project
 4. Make sure to not commit your `env.yml`.
 
 # Future Enhancement / TODO
+- [ ] Optimize template and data loading in a single load.
 - [ ] Demonstrate CMS front-end with openresty.
 
 # NOTE / WARNINGS
