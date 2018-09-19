@@ -15,8 +15,8 @@ meta: {
   siteUrl: 'https://www.yourdomain.com',
   title: 'page title',
   // the combination of siteUrl and path make the full/cannonical url
-  path: 'this is the slug that is your page url',
-  cannonical: 'your can override cannonical url setting here'
+  pagePath: 'this is the slug that is your page url',
+  cannonicalUrl: 'your can override cannonical url setting here'
   startedAt: yyyymmdd,
   endedAt: yyyymmdd,,
   imageUrl: 'this is your sharing/featured image url',
@@ -30,9 +30,9 @@ meta: {
   extra: {
     // any additional meta goes here
   },
-  headAppends: 'append content to the head tag, if </head> is found',
-  contentAppends: 'stuff to append to the content body, if found; otherwise, append to the content',
-  contentPrepends: 'prepend after the body tag if found; otherwise, prepend to content if no body tag found'
+  headBottom: 'append content to the head tag, if </head> is found',
+  contentTop: 'prepend after the body tag if found; otherwise, prepend to content',
+  contentBottom: 'stuff to append to the content body, if found; otherwise, append to the content',
 },
 // advance template configuration
 template: {
@@ -50,11 +50,10 @@ widgets: {
   widget1: 'url1 to load html or json',
   widget2: 'url2, json are automatically converted'
 },
-// this is the view data that will be available to the template
+content: 'the content html',
+// the the locals view data object: __meta, __widgets, and __content are added
 locals: {
-  content: 'the content html',
-  _meta: 'do not pass, this get injected/override with meta above',
-  _widgets: 'widgets are also available here'
+  firstName: 'john'
 }
 ```
 
