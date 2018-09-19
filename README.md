@@ -8,7 +8,7 @@ To support rendering of different templating engines, this library use consolida
 ## Psuedo-code
 parameters:
 ```
-// page meta are available on the template as _meta
+// page meta are available on the template as __m
 meta: {
   templateUrl: 'the template url',
   // this is the base url of your site
@@ -45,13 +45,14 @@ template: {
   // array of partials url parallel load, performance optimization
   includes: ['array of urls']
 },
-// widgets are available to your template as _widgets
+// widgets are available to your template as __w
 widgets: {
   widget1: 'url1 to load html or json',
   widget2: 'url2, json are automatically converted'
 },
+// available as on template as __c
 content: 'the content html',
-// the the locals view data object: __meta, __widgets, and __content are added
+// the the locals view data object: __m, __w, and __c are added
 locals: {
   firstName: 'john'
 }
