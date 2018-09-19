@@ -3,7 +3,7 @@
 
 This package help provide server-side rendering, serverlessly.  Say what? ;)
 
-To support rendering of different templating engines, this library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines Consolidate.js is a library that define a single rendering API (consolidates) for different templating engines.  It is widely use in various server-side frameworks such as Express and Koa.
+To support rendering of different templating engines, this library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines Consolidate.js is a library that define a single rendering API (a consolidated API) for different templating engines.  It is widely use in various server-side frameworks such as Express, Koa, hapi, etc...
 
 ## Psuedo-code
 parameters:
