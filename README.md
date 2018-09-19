@@ -68,13 +68,13 @@ locals: {
 ```html
 // here we output a partial
 <script id="partial1" type="text/x-template">
-{{ _widgets.partial1 }};
+{{ __w.partial1 }};
 </script>
 
 // here we output a json object; to output oubject that has scripts
 // use filter: replace("<\script>", "<\/scr\\ipt>"
 <script>
-windows._widget2 = {{ data.products | dump )}};
+windows.recipe = {{ __w.recipe | dump )}};
 </script>
 ```
 
