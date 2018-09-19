@@ -62,9 +62,20 @@ locals: {
 3. Initialize template engine based on engine and options, set base path of engine to /tmp/$bucket
 4. Loop through stateConfigs and async retrieve all object, merge with state
 5. Call renderFile($saved_template, state)
-6. process headAppends, contentPrepends, and contentAppends 
+6. process headBottom, contentTop, and contentBottom.  Since the template is provided, user can add their own head and body content.  The purpose of headAppends, contentPrepends, and contentAppends is for additional analytic script/pixel...
+7. You can also process widgets on the client-side by serializing it, example:
+```html
+// here we output a partial
+<script id="partial1" type="text/x-template">
+{{ _widgets.partial1 }};
+</script>
 
-Obviously, since the template is provided, user can add their own head and body content.  The purpose of headAppends, contentPrepends, and contentAppends is for additional analytic script/pixel...
+// here we output a json object; to output oubject that has scripts
+// use filter: replace("<\script>", "<\/scr\\ipt>"
+<script>
+windows._widget2 = {{ data.products | dump )}};
+</script>
+```
 
 ## Usage
 * Commonly use to dynamically generate landing page.
