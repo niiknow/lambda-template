@@ -8,66 +8,53 @@ To support rendering of different templating engines, this library use consolida
 ## Psuedo-code
 parameters:
 ```
+// page meta are available on the template as _meta
+meta: {
+  templateUrl: 'the template url',
+  // this is the base url of your site
+  siteUrl: 'https://www.yourdomain.com',
+  title: 'page title',
+  // the combination of siteUrl and path make the full/cannonical url
+  path: 'this is the slug that is your page url',
+  cannonical: 'your can override cannonical url setting here'
+  startedAt: yyyymmdd,
+  endedAt: yyyymmdd,,
+  imageUrl: 'this is your sharing/featured image url',
+  robots: 'index, follow',
+  description: 'short description or page excerpt',
+  twitterHandle: '@twitter card handle - dont forget the @ sign',
+  twitterType: 'summary',
+  author: 'site name or author',
+  type: 'website',
+  locale: 'en_US',
+  extra: {
+    // any additional meta goes here
+  },
+  headAppends: 'append content to the head tag, if </head> is found',
+  contentAppends: 'stuff to append to the content body, if found; otherwise, append to the content',
+  contentPrepends: 'prepend after the body tag if found; otherwise, prepend to content if no body tag found'
+},
+// advance template configuration
 template: {
-  url: 'https://the.template.url/template.dot',
+  engine: 'dot',
+  engineOptions: 'engine specific options',
   pretty: 'true to enable beautifier',
   minify: 'true to minify html and css',
-  engine: 'dot',
-  engineOptions: 'engine specific options'
+  seo: 'true use internal seo template to override title element',
+
+  // array of partials url parallel load, performance optimization
+  includes: ['array of urls']
 },
-state: {
-  firstName: 'John'
+// widgets are available to your template as _widgets
+widgets: {
+  widget1: 'url1 to load html or json',
+  widget2: 'url2, json are automatically converted'
 },
-stateConfigs: {
-  recipe: 'url to recipe json',
-  product: {
-    url: 'product url',
-    headers: {
-      'auth': {
-        'user': 'username',
-        'pass': 'password',
-        'sendImmediately': false
-      },
-      // or
-      'auth': {
-        'bearer': 'bearerToken'
-      }
-      // or
-      {'x-token': 'my-token'}
-    },
-    body: {
-      stuff: 'for POST method'
-    }
-  },
-  seo: {
-    title: 'page title',
-    url: 'page and cannonical url',
-    image: 'image url',
-    robots: 'index, follow',
-    description: 'short description or page excerpt',
-    twitterHandle: 'twitter card handle',
-    twitterType: 'summary',
-    author: 'site name or author',
-    type: 'website',
-    locale: 'en_US'
-  }
-},
-extra: {
-  headAppends: 'append content to the head tag, if </head> is found',
-  contentPrepends: 'prepend after the body tag if found; otherwise, prepend to content if no body tag found',
-  contentAppends: 'stuff to append to the content body, if found; otherwise, append to the content',
-  contents: {
-    block1: { 
-      startAt: yyyymmdd, 
-      endAt: yyyymmdd,
-      timezone: 'cst',
-      locale: 'en', 
-      stores: ['guidx', 'guidy'],
-      geos: [{lat: xx.xx, lng: yy.yy, radius: 50 }], // fencing radius in meters
-      label: 'store x, y, z',
-      content: ''
-    }
-  }
+// this is the view data that will be available to the template
+locals: {
+  content: 'the content html',
+  _meta: 'do not pass, this get injected/override with meta above',
+  _widgets: 'widgets are also available here'
 }
 ```
 
@@ -77,7 +64,6 @@ extra: {
 4. Loop through stateConfigs and async retrieve all object, merge with state
 5. Call renderFile($saved_template, state)
 6. process headAppends, contentPrepends, and contentAppends 
-7. extra.contents are pass in to be render as json on the client side as window.__templateExtra.contents - this is display to the client with provided javascript base on browser info.  We cannot render targeted content blocks server-side without cache and performance issues.
 
 Obviously, since the template is provided, user can add their own head and body content.  The purpose of headAppends, contentPrepends, and contentAppends is for additional analytic script/pixel...
 
