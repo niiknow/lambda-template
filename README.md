@@ -78,8 +78,8 @@ windows._widget2 = {{ data.products | dump )}};
 ```
 
 ## Usage
-* Commonly use to dynamically generate landing page.
-* Can be use to generate personalized html for email.
+* Commonly use to dynamically generate landing page or personalized email template.
+* Perfect for something like [grapejs](https://github.com/artf/grapesjs)
 * Use with some kind of headless CMS like: cloudcms.com, contentful.com, dotcms.com, prismic.io, etc... https://www.cmswire.com/web-cms/13-headless-cmss-to-put-on-your-radar/
 * Build your own headless CMS.  Simply create a UI that output configuration for this.  Use openresty make aws lambda call, cache, and return html to the client.
 * Create your own jsfiddle, codepen, plunkr, etc...
