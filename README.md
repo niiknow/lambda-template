@@ -8,73 +8,93 @@ To support rendering of different templating engines, this library use consolida
 ## Psuedo-code
 parameters:
 ```
-// page meta are available on the template as __m
-meta: {
-  templateUrl: 'the template url',
-  // this is the base url of your site
-  siteUrl: 'https://www.yourdomain.com',
-  title: 'page title',
-  // the combination of siteUrl and path make the full/cannonical url
-  pagePath: 'this is the slug that is your page url',
-  canonicalUrl: 'your can override cannonical url setting here'
-  startedAt: yyyymmdd,
-  endedAt: yyyymmdd,,
-  imageUrl: 'this is your sharing/featured image url',
-  robots: 'index, follow',
-  description: 'short description or page excerpt',
-  twitterHandle: '@twitter card handle - dont forget the @ sign',
-  twitterType: 'summary',
-  authorName: 'site name or author',
-  type: 'website',
-  locale: 'en_US',
-  extra: {
-    // any additional meta goes here
-  },
-  headBottom: 'append content to the head tag, if </head> is found',
-  contentTop: 'prepend after the body tag if found; otherwise, prepend to content',
-  contentBottom: 'stuff to append to the content body, if found; otherwise, append to the content',
-},
-// advance template configuration
-template: {
-  engine: 'dot',
-  engineOptions: 'engine specific options',
-  pretty: 'true to enable beautifier',
-  minify: 'true to minify html and css',
-  seo: 'true use internal seo template to override title element',
+{
+  site: {
+    // this is your site primary domain, https:// if protocol is not provided
+    host: 'www.yourdomain.com',
+    // additional host names, new line separated
+    other_hosts: 'abc.yourdomain.com en.yourdomain.com mobile.yourdomain.com',
 
-  // array of partials url parallel load, performance optimization
-  includes: ['array of urls']
-},
-// widgets are available to your template as __w
-widgets: {
-  widget1: 'url1 to load html or json',
-  widget2: 'url2, json are automatically converted'
-},
-// available as on template as __c
-content: 'the content html',
-// the the locals view data object: __m, __w, and __c are added
-locals: {
-  firstName: 'john'
+    business_name: 'Your site author/business name.',
+    business_url: 'Your site author/business url.',
+    template_type: 'dot',
+    template_options: 'engine specific option json',
+    enable_auto_description: 'true to automatically take 250 characters of content as description, when description is empty',
+    title_top: 'global content before <title> tag',
+    title_bottom: 'global content after the </title> tag',
+    head_bottom: 'global content before </head> end tag',
+    content_top: 'global content top - add right after <body> tag',
+    content_bottom: 'global content bottom - add right before </body> end tag',
+
+    // partial urls, one per line - for template performance optimization
+    partials: 'urls line separated',
+
+    // timezone: 'cst' ?
+    // money_format: '$0.00' ?
+  },
+  started_at: yyyymmdd,
+  ended_at: yyyymmdd,
+
+  // allow for temporary disable without setting ended_at
+  disabled_at: yyyymmdd,
+
+  // default: page.htm
+  template_url: 'the template url',
+
+  label: 'give this page an internal name',
+  title: 'page title',
+ 
+  // this is the base path, for a page, it is empty
+  // this can also be use to identify page type
+  base_path: 'blog',
+
+  // it does not allow forward slashes
+  // follow ascii and unicode encoding
+  slug: 'this is the slug that is your page path',
+  image_url: 'this is your sharing/featured image url',
+
+  // also see, enable_auto_description above
+  description: 'short description',
+
+  content: 'the page content',
+
+  // when you set this, it will evaluate content as template 
+  // then the result is passed to the template
+  enable_content_template: 'true to evaluate content as template'
+
+  // tags are like categories of a blog
+  // allow for page or blog quick search
+  tags: 'space separated tags value',
+
+  // extra fields are defined here
+  extra: {
+  },
+
+  // dynamically loaded jsons
+  widgets: {
+    widget1: 'url1 to load html or json',
+    widget2: 'url2, json are automatically converted'
+  }
 }
 ```
 
 1. Generate MD5 template url: $url_md5
-2. Download and save template to /tmp/$bucket/$url_md5.extension = $saved_template
+2. Download and save template to /tmp/$bucket/$url_md5.extension = $saved_template_path
 3. Initialize template engine based on engine and options, set base path of engine to /tmp/$bucket
-4. Loop through stateConfigs and async retrieve all object, merge with state
-5. Call renderFile($saved_template, state)
-6. process headBottom, contentTop, and contentBottom.  Since the template is provided, user can add their own head and body content.  The purpose of headAppends, contentPrepends, and contentAppends is for additional analytic script/pixel...
-7. You can also process widgets on the client-side by serializing it, example:
+4. Loop through widgets and async retrieve all object, merge with locals
+5. Call renderFile($saved_template, locals)
+6. process head_bottom, content_top, and content_bottom.  Since the template is provided, user can add their own head and body content.
+7. You can also output widgets on the client-side by serializing it, example:
 ```html
 // here we output a partial
 <script id="partial1" type="text/x-template">
-{{ __w.partial1 }};
+{{ widgets.partial1 }};
 </script>
 
 // here we output a json object; to output oubject that has scripts
-// use filter: replace("<\script>", "<\/scr\\ipt>"
+// use filter: replace("<\script>", "<\/scr\\ipt>")
 <script>
-windows.recipe = {{ __w.recipe | dump )}};
+windows.recipe = {{ widgets.recipe | dump )}};
 </script>
 ```
 
