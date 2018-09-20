@@ -6,19 +6,19 @@ test('test_doT_template', async () => {
       bucket: 'doT',
     },
     body: {
+      meta: {
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/doTjs.dot',
+        headBottom: '<meta name="hi" content="hi" />',
+        contentTop: 'Hola',
+        contentBottom: 'Como Esta?',
+      },
       template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/doTjs.dot',
         engine: 'dot'
       },
-      state: {
+      locals: {
         name: 'john',
         age: 100,
-      },
-      extra: {
-        headAppends: '<meta name="hi" content="hi" />',
-        contentPrepends: 'Hola',
-        contentAppends: 'Como Esta?',
-      },
+      }
     },
   };
 
@@ -39,16 +39,16 @@ test('test_nunjucks_template', async () => {
       bucket: 'njk1',
     },
     body: {
+      meta: {
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/nunjucks.htm',
+        headBottom: '<meta name="hi" content="hi" />',
+        contentTop: 'Hola',
+        contentBottom: 'Como Esta?',
+      },
       template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/nunjucks.html',
         minify: true
       },
-      extra: {
-        headAppends: '<meta name="hi" content="hi" />',
-        contentPrepends: '{{ Hola }}',
-        contentAppends: 'Como Esta?',
-      },
-      state: {
+      locals: {
         firstName: 'Slim',
         lastName: 'Shady',
       }
@@ -72,19 +72,17 @@ test('test_task_in_mn', async () => {
       bucket: 'njk2',
     },
     body: {
-      template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.html'
+      templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.htm',
+      meta: {
+        headBottom: '<meta name="hi" content="hi" />',
+        contentTop: 'Hola',
+        contentBottom: 'Como Esta?',
       },
-      extra: {
-        headAppends: '<meta name="hi" content="hi" />',
-        contentPrepends: 'Hola',
-        contentAppends: 'Como Esta?',
-      },
-      state: {
+      locals: {
         firstName: 'Slim',
         lastName: 'Shady',
       },
-      stateUrls: {
+      widgets: {
         mn: 'https://niiknow.github.io/zipcode-us/db/55/55123.json',
         task: 'https://jsonplaceholder.typicode.com/todos/1',
       }
@@ -107,15 +105,8 @@ test('test_doT_with_nunjucks_seo', async () => {
       bucket: 'doT',
     },
     body: {
-      template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/doTjs.dot',
-        engine: 'dot'
-      },
-      state: {
-        name: 'john',
-        age: 100,
-      },
-      seo: {
+      meta: {
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/doTjs.dot',
         title: 'Rainbow Root Soup - Guiding Stars',
         url: 'https://guidingstars.com/recipes/rainbow-root-soup/',
         image: 'https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png',
@@ -126,6 +117,13 @@ test('test_doT_with_nunjucks_seo', async () => {
         author: 'Recipes',
         type: 'article',
         locale: 'en_US'
+      },
+      template: {
+        engine: 'dot'
+      },
+      locals: {
+        name: 'john',
+        age: 100,
       }
     },
   };
@@ -169,13 +167,15 @@ test('test_script_text_seo', async () => {
       bucket: 'njk3',
     },
     body: {
-      template: {
-        url: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/script-text-seo.njk',
-        minify: true
+      meta: {
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/script-text-seo.njk'
       },
-      state: {
+      locals: {
         firstName: 'Slim',
         lastName: 'Shady',
+      },
+      template: {
+        minify: true
       }
     },
   };

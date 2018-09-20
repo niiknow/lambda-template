@@ -1,30 +1,29 @@
+import fs from 'fs';
 import ViewEngine from './lib/ViewEngine';
 
 export const template = async (event, context, callback) => {
-  const viewng = new ViewEngine(event.path.bucket);
-  let response = {
-    statusCode: 200,
-  };
+  const urls = [event.query.url || event.body.meta.url];
+  const viewng = new ViewEngine(event.path.bucket, urls[0]);
 
-  // two step process, slower
-  if (event.method === 'GET') {
-    if (event.query.url) {
-      // retrieve remote config
-      await viewng.getJsonItem('body', event.query.url, event);
-    } else {
-      callback(null, {
-        statusCode: 422,
-        body: 'The query string parameter "url" of your config json is required.',
-      });
+  if (viewng.baseUrl) {
+    urls.push(viewng.partialNavUrl);
+    urls.push(viewng.templateUrl);
 
-      return;
-    }
+    const rst = viewng.njkLoaders.fetchUrls(urls);
+    rst.forEach((v) => {
+      if (v === urls[0]) {
+        // expect data to be json, otherwise error
+        event.body = viewng.tryParseJson(fs.readFileSync(v.path, 'utf8'));
+      }
+    });
   }
 
   const html = await viewng.render(event.body);
-  response = {
+
+  const response = {
+    headers: {'Content-Type': 'application/json'},
     statusCode: 200,
-    body: (html + '').trim(),
+    body: (html + '').trim()
   };
 
   callback(null, response);
