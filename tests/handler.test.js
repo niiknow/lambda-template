@@ -7,7 +7,7 @@ test('test_doT_template', async () => {
     },
     body: {
       meta: {
-        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/doTjs.dot',
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/doTjs.dot',
         headBottom: '<meta name="hi" content="hi" />',
         contentTop: 'Hola',
         contentBottom: 'Como Esta?',
@@ -40,9 +40,9 @@ test('test_nunjucks_template', async () => {
     },
     body: {
       meta: {
-        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/nunjucks.htm',
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/nunjucks.htm',
         headBottom: '<meta name="hi" content="hi" />',
-        contentTop: 'Hola',
+        contentTop: '{{ Hola }}',
         contentBottom: 'Como Esta?',
       },
       template: {
@@ -72,8 +72,8 @@ test('test_task_in_mn', async () => {
       bucket: 'njk2',
     },
     body: {
-      templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/task-in-mn.htm',
       meta: {
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/task-in-mn.htm',
         headBottom: '<meta name="hi" content="hi" />',
         contentTop: 'Hola',
         contentBottom: 'Como Esta?',
@@ -106,7 +106,7 @@ test('test_doT_with_nunjucks_seo', async () => {
     },
     body: {
       meta: {
-        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/doTjs.dot',
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/doTjs.dot',
         title: 'Rainbow Root Soup - Guiding Stars',
         url: 'https://guidingstars.com/recipes/rainbow-root-soup/',
         image: 'https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png',
@@ -119,7 +119,8 @@ test('test_doT_with_nunjucks_seo', async () => {
         locale: 'en_US'
       },
       template: {
-        engine: 'dot'
+        engine: 'dot',
+        seo: true
       },
       locals: {
         name: 'john',
@@ -168,14 +169,15 @@ test('test_script_text_seo', async () => {
     },
     body: {
       meta: {
-        templateUrl: 'https://raw.githubusercontent.com/niiknow/serverless-template/master/tests/views/script-text-seo.njk'
+        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/script-text-seo.njk'
       },
       locals: {
         firstName: 'Slim',
         lastName: 'Shady',
       },
       template: {
-        minify: true
+        minify: true,
+        seo: true
       }
     },
   };
