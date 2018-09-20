@@ -16,7 +16,7 @@ meta: {
   title: 'page title',
   // the combination of siteUrl and path make the full/cannonical url
   pagePath: 'this is the slug that is your page url',
-  cannonicalUrl: 'your can override cannonical url setting here'
+  canonicalUrl: 'your can override cannonical url setting here'
   startedAt: yyyymmdd,
   endedAt: yyyymmdd,,
   imageUrl: 'this is your sharing/featured image url',
@@ -24,7 +24,7 @@ meta: {
   description: 'short description or page excerpt',
   twitterHandle: '@twitter card handle - dont forget the @ sign',
   twitterType: 'summary',
-  author: 'site name or author',
+  authorName: 'site name or author',
   type: 'website',
   locale: 'en_US',
   extra: {

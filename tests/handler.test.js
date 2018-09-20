@@ -83,12 +83,13 @@ test('test_task_in_mn', async () => {
         lastName: 'Shady',
       },
       widgets: {
-        mn: 'https://niiknow.github.io/zipcode-us/db/55/55123.json',
+        mn: 'https://raw.githubusercontent.com/niiknow/zipcode-us/master/db/55/55123.json',
         task: 'https://jsonplaceholder.typicode.com/todos/1',
       }
     },
   };
-  const expected = 'Hola<div>State: MN </div><div>1</div>Como Esta?';
+  const expected = `Hola<div>State: MN </div><div>1</div>
+Como Esta?`;
   const context = 'context';
   const callback = (error, response) => {
     expect(response.statusCode).toEqual(200);
@@ -108,13 +109,14 @@ test('test_doT_with_nunjucks_seo', async () => {
       meta: {
         templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/doTjs.dot',
         title: 'Rainbow Root Soup - Guiding Stars',
-        url: 'https://guidingstars.com/recipes/rainbow-root-soup/',
-        image: 'https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png',
+        siteUrl: 'https://guidingstars.com',
+        pagePath: '/recipes/rainbow-root-soup/',
+        imageUrl: 'https://guidingstars.com/wp-content/uploads/2018/02/GSLogoOverlay-3-stars.png',
         robots: 'index, follow',
         description: 'If your family loves their chicken soup with noodles, cook up a pan of whole-wheat pasta and store it in the fridge. Add a handful of noodles as you reheat the soup to prevent the noodles from getting soggy.',
         twitterHandle: '@guidingstars',
         twitterType: 'summary_large_image',
-        author: 'Recipes',
+        authorName: 'Recipes',
         type: 'article',
         locale: 'en_US'
       },
@@ -176,8 +178,7 @@ test('test_script_text_seo', async () => {
         lastName: 'Shady',
       },
       template: {
-        minify: true,
-        seo: true
+        minify: true
       }
     },
   };

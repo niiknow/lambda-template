@@ -1,0 +1,23 @@
+<title>{{ __m.title }}</title>
+{% if __m.robots %}<meta name="robots" content="{{ __m.robots }}" />{% endif %}
+{% if __m.canonicalUrl %}<link rel="canonical" href="{{ __m.canonicalUrl }}" />{% endif %}
+{% if __m.authorName %}<link rel="author" href="{{ __m.authorName }}" />{% endif %}
+{% if __m.description %}<link rel="description" href="{{ __m.description }}" />{% endif %}
+{% if __m.type %}<meta property="og:type" content="{{ __m.type }}" />{% endif %}
+{% if __m.locale %}<meta property="og:locale" content="{{ __m.locale }}" />{% endif %}
+{% if __m.title %}<meta property="og:site_name" content="{{ __m.title }}" />{% endif %}
+{% if __m.canonicalUrl %}<meta property="og:url" content="{{ __m.canonicalUrl }}" />{% endif %}
+{% if __m.title %}<meta property="og:title" content="{{ __m.title }}" />{% endif %}
+{% if __m.imageUrl %}<meta property="og:image" content="{{ __m.imageUrl }}" />{% endif %}
+{% if __m.description %}<meta property="og:description" content="{{ __m.description }}" />{% endif %}
+{% if __m.twitterType %}<meta name="twitter:card" content="{{ __m.twitterType }}" />{% endif %}
+{% if __m.twitterHandle %}<meta name="twitter:site" content="{{ __m.twitterHandle }}" />
+<meta name="twitter:creator" content="{{ __m.twitterHandle }}" />{% endif %}
+{% if __m.title %}<meta name="twitter:title" content="{{ __m.title }}" />{% endif %}
+{% if __m.imageUrl %}<meta name="twitter:image:src" content="{{ __m.imageUrl }}" />{% endif %}
+{% if __m.description %}<meta name="twitter:description" content="{{ __m.description }}" />{% endif %}
+{% if __m.title %}<meta itemprop="name" content="{{ __m.title }}" />{% endif %}
+{% if __m.canonicalUrl %}<meta itemprop="url" content="{{ __m.canonicalUrl }}" />{% endif %}
+{% if __m.authorName %}<meta itemprop="author" content="{{ __m.authorName }}" />{% endif %}
+{% if __m.imageUrl %}<meta itemprop="image" content="{{ __m.imageUrl }}" />{% endif %}
+{% if __m.description %}<meta itemprop="description" content="{{ __m.description }}" />{% endif %}
