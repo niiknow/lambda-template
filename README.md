@@ -74,6 +74,18 @@ parameters:
   widgets: {
     widget1: 'url1 to load html or json',
     widget2: 'url2, json are automatically converted'
+  },
+
+  // future schema planning for user's specific data
+  user: {
+    browser: {
+      locale: 'locale reported',
+      location: 'geo location'
+    },
+    header: {},
+    body: {},
+    query: {},
+    params: {}
   }
 }
 ```
