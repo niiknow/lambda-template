@@ -29,26 +29,22 @@ test('test_doT_template', async () => {
 
   await handler.template(event, context, callback);
 });
-/*
+
 test('test_nunjucks_template', async () => {
   const event = {
     path: {
       bucket: 'njk1',
     },
     body: {
-      meta: {
-        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/nunjucks.htm',
-        headBottom: '<meta name="hi" content="hi" />',
-        contentTop: '{{ Hola }}',
-        contentBottom: 'Como Esta?',
+      site: {
+        host: 'example.com',
+        head_bottom: '<meta name="hi" content="hi" />',
+        content_top: 'Hola',
+        content_bottom: 'Como Esta?'
       },
-      template: {
-        minify: true
-      },
-      locals: {
-        firstName: 'Slim',
-        lastName: 'Shady',
-      }
+      template_url: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/nunjucks.htm',
+      firstName: 'Slim',
+      lastName: 'Shady'
     }
   };
   const expected = '<html><head><title>Hello</title><meta name="hi" content="hi"></head><body>{{ Hola }}<div>My name is Slim Shady!</div>Como Esta?</body></html>';
@@ -63,6 +59,7 @@ test('test_nunjucks_template', async () => {
   await handler.template(event, context, callback);
 });
 
+/*
 test('test_task_in_mn', async () => {
   const event = {
     path: {

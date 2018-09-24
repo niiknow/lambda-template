@@ -5,7 +5,7 @@ This package help provide server-side rendering, serverlessly.  Say what? ;)
 
 To support rendering of different templating engines, this library use consolidate.js, see list of supported engines here: https://github.com/tj/consolidate.js#supported-template-engines Consolidate.js is a library that define a single rendering API (a consolidated API) for different templating engines.  It is widely use in various server-side frameworks such as Express, Koa, hapi, etc...
 
-## Psuedo-code
+## Logic
 parameters:
 ```
 {
@@ -121,11 +121,14 @@ windows.recipe = {{ widgets.recipe | dump )}};
 Default engine is nunjucks; otherwise, just install additional engines and pass engine name and configuration in api call.  We've also installed doTjs engine to demonstrate how it can be done in the unit test.
 
 ### Why nunjucks?
-* Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, support, and is popular.
-* It has a bunch of filters built-in so we don't have to write additional filters: https://mozilla.github.io/nunjucks/templating.html#builtin-filters
-* Liquid like syntax so it's easy to convert existing theme templates from popular providers such as Shopify, Adobe Business Catalyst, or Nation Builder.
-* Has {% raw %} and {% endraw %} to support client-side javascript: https://mozilla.github.io/nunjucks/templating.html#raw
-* Provide easy way to customize template loader so we can remote load our templates.
+1. Unlike liquid/tinylinquid in javascript, nunjucks is actively being develop, support, and is popular.
+2. It has a bunch of filters built-in so we don't have to write additional filters: https://mozilla.github.io/nunjucks/templating.html#builtin-filters
+3. Liquid like syntax so it's easy to convert existing theme templates from popular providers such as Shopify, Adobe Business Catalyst, or Nation Builder.
+4. Similar to popular, cross platform/language templating engine like twig.
+5. Has {% raw %} and {% endraw %} to support client-side javascript: https://mozilla.github.io/nunjucks/templating.html#raw
+6. Provide easy way to customize template loader so we can remote load our templates.  Unlike twig, it also support async loading.  
+
+**Note**: Item #6 is the primary reason for default to nunjucks.  It is important to understand which features are supported from various templating engines.
 
 ### Requirements
 
