@@ -6,19 +6,16 @@ test('test_doT_template', async () => {
       bucket: 'doT',
     },
     body: {
-      meta: {
-        templateUrl: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/doTjs.dot',
-        headBottom: '<meta name="hi" content="hi" />',
-        contentTop: 'Hola',
-        contentBottom: 'Como Esta?',
+      site: {
+        host: 'example.com',
+        template_type: 'dot',
+        head_bottom: '<meta name="hi" content="hi" />',
+        content_top: 'Hola',
+        content_bottom: 'Como Esta?'
       },
-      template: {
-        engine: 'dot'
-      },
-      locals: {
-        name: 'john',
-        age: 100,
-      }
+      template_url: 'https://raw.githubusercontent.com/niiknow/renderless/master/tests/views/doTjs.dot',
+      name: 'john',
+      age: 100
     },
   };
 
@@ -32,7 +29,7 @@ test('test_doT_template', async () => {
 
   await handler.template(event, context, callback);
 });
-
+/*
 test('test_nunjucks_template', async () => {
   const event = {
     path: {
@@ -193,3 +190,4 @@ test('test_script_text_seo', async () => {
 
   await handler.template(event, context, callback);
 });
+*/

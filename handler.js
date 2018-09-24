@@ -3,7 +3,7 @@ import ViewEngine from './lib/ViewEngine';
 
 export const template = async (event, context, callback) => {
   const urls = [(event.query || {}).url
-    || ((event.body || {}).meta || {}).templateUrl];
+    || (event.body || {}).template_url];
   const viewng = new ViewEngine(event.path.bucket, urls[0]);
 
   if (viewng.baseUrl) {

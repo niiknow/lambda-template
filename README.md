@@ -26,8 +26,8 @@ parameters:
     content_top: 'global content top - add right after <body> tag',
     content_bottom: 'global content bottom - add right before </body> end tag',
 
-    // partial urls, one per line - for template performance optimization
-    partials: 'urls line separated',
+    // urls, one per line - for template performance optimization
+    related_urls: 'urls line separated',
 
     // timezone: 'cst' ?
     // money_format: '$0.00' ?
@@ -70,7 +70,7 @@ parameters:
   extra: {
   },
 
-  // dynamically loaded jsons
+  // dynamically loaded jsons, result become __w
   widgets: {
     widget1: 'url1 to load html or json',
     widget2: 'url2, json are automatically converted'
@@ -170,6 +170,7 @@ To add environment variables to your project
 # Future Enhancement / TODO
 - [ ] Optimize template and data loading in a single load.
 - [ ] Demonstrate CMS front-end with openresty.
+- [ ] Create a docker build for this instead of serverless so we can better control cache.
 
 # NOTE / WARNINGS
 * Async is use for all templating including the default nunjucks template, please see all nunjucks recommendation for async templating, especially: https://mozilla.github.io/nunjucks/templating.html#asynceach
